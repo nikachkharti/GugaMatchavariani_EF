@@ -1,6 +1,15 @@
 ﻿using GugaMatchavariani_EF.Data;
 using GugaMatchavariani_EF.Entities;
 
+//შექმენი ახალი ცხრილი Entity Framework ის გამოყენებით. შემდეგი პარამეტრებით
+/*
+    Subject:
+        Id PK Identity;
+        Name;
+        Score უნდა იყოს ათწილადი რიცხვი(double);
+ */
+
+
 namespace GugaMatchavariani_EF
 {
     internal class Program
