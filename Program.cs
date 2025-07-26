@@ -14,13 +14,13 @@ namespace GugaMatchavariani_EF
             },
             new Student()
             {
-                FullName = "Giorgi Giorgadze",
-                DateOfBirth = new DateTime(year:1995,month:04,day:06)
+                FullName = "Guga Matchavariani",
+                DateOfBirth = new DateTime(year:2000,month:04,day:06)
             },
             new Student()
             {
-                FullName = "Giorgi Giorgadze",
-                DateOfBirth = new DateTime(year:1995,month:04,day:06)
+                FullName = "Nika Chkhartishvili",
+                DateOfBirth = new DateTime(year:2001,month:04,day:06)
             }
         };
 
