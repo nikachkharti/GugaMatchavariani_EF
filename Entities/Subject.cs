@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GugaMatchavariani_EF.Entities
 {
-    public class Student
+    public class Subject
     {
         [Key]
         [Required]
@@ -12,10 +12,10 @@ namespace GugaMatchavariani_EF.Entities
 
         [Required]
         [MaxLength(50)]
-        public string FullName { get; set; }
+        public string Name { get; set; }
 
         [Required]
-        public DateTime DateOfBirth { get; set; }
+        public double Score { get; set; }
 
         //MxM
         public ICollection<StudentSubject> StudentSubjects { get; set; }

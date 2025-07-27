@@ -1,15 +1,6 @@
 ﻿using GugaMatchavariani_EF.Data;
 using GugaMatchavariani_EF.Entities;
 
-//შექმენი ახალი ცხრილი Entity Framework ის გამოყენებით. შემდეგი პარამეტრებით
-/*
-    Subject:
-        Id PK Identity;
-        Name;
-        Score უნდა იყოს ათწილადი რიცხვი(double);
- */
-
-
 namespace GugaMatchavariani_EF
 {
     internal class Program
@@ -33,6 +24,61 @@ namespace GugaMatchavariani_EF
             }
         };
 
+
+        public static List<Subject> subjects = new()
+        {
+            new Subject()
+            {
+                Name = "C#",
+                Score = 8.0
+            },
+            new Subject()
+            {
+                Name = "Typescript",
+                Score = 8.0
+            },
+            new Subject()
+            {
+                Name = "Angular",
+                Score = 8.0
+            }
+        };
+
+
+        public static List<StudentSubject> studentSubjects = new()
+        {
+            new StudentSubject()
+            {
+                StudentId = 1,
+                SubjectId = 1,
+            },
+            new StudentSubject()
+            {
+                StudentId = 1,
+                SubjectId = 2,
+            },
+            new StudentSubject()
+            {
+                StudentId = 1,
+                SubjectId = 3,
+            },
+            new StudentSubject()
+            {
+                StudentId = 2,
+                SubjectId = 2,
+            },
+            new StudentSubject()
+            {
+                StudentId = 3,
+                SubjectId = 1,
+            },
+            new StudentSubject()
+            {
+                StudentId = 3,
+                SubjectId = 3,
+            }
+        };
+
         static async Task Main(string[] args)
         {
             try
@@ -43,11 +89,13 @@ namespace GugaMatchavariani_EF
                 DatabaseCreateLog(dbCreated);
 
                 await context.Students.AddRangeAsync(students);
+                await context.Subjects.AddRangeAsync(subjects);
+                await context.StudentSubjects.AddRangeAsync(studentSubjects);
                 await context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex);
             }
 
 

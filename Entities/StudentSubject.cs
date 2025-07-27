@@ -3,21 +3,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GugaMatchavariani_EF.Entities
 {
-    public class Student
+    public class StudentSubject
     {
         [Key]
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        public string FullName { get; set; }
+        //[ForeignKey(nameof(Student))]
+        public int StudentId { get; set; }
+        public Student Student { get; set; }
 
-        [Required]
-        public DateTime DateOfBirth { get; set; }
 
-        //MxM
-        public ICollection<StudentSubject> StudentSubjects { get; set; }
+        //[ForeignKey(nameof(Subject))]
+        public int SubjectId { get; set; }
+        public Subject Subject { get; set; }
     }
 }
