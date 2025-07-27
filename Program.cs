@@ -23,8 +23,6 @@ namespace GugaMatchavariani_EF
                 DateOfBirth = new DateTime(year:2001,month:04,day:06)
             }
         };
-
-
         public static List<Subject> subjects = new()
         {
             new Subject()
@@ -45,51 +43,52 @@ namespace GugaMatchavariani_EF
         };
 
 
-        public static List<StudentSubject> studentSubjects = new()
-        {
-            new StudentSubject()
-            {
-                StudentId = 1,
-                SubjectId = 1,
-            },
-            new StudentSubject()
-            {
-                StudentId = 1,
-                SubjectId = 2,
-            },
-            new StudentSubject()
-            {
-                StudentId = 1,
-                SubjectId = 3,
-            },
-            new StudentSubject()
-            {
-                StudentId = 2,
-                SubjectId = 2,
-            },
-            new StudentSubject()
-            {
-                StudentId = 3,
-                SubjectId = 1,
-            },
-            new StudentSubject()
-            {
-                StudentId = 3,
-                SubjectId = 3,
-            }
-        };
-
         static async Task Main(string[] args)
         {
             try
             {
                 using var context = new ApplicationDbContext();
                 bool dbCreated = context.Database.EnsureCreated();
-
                 DatabaseCreateLog(dbCreated);
 
                 await context.Students.AddRangeAsync(students);
                 await context.Subjects.AddRangeAsync(subjects);
+                await context.SaveChangesAsync();
+
+                var studentSubjects = new List<StudentSubject>
+                {
+                    new StudentSubject
+                    {
+                        StudentId = students[0].Id,
+                        SubjectId = subjects[0].Id
+                    },
+                    new StudentSubject
+                    {
+                        StudentId = students[0].Id,
+                        SubjectId = subjects[1].Id
+                    },
+                    new StudentSubject
+                    {
+                        StudentId = students[0].Id,
+                        SubjectId = subjects[2].Id
+                    },
+                    new StudentSubject
+                    {
+                        StudentId = students[1].Id,
+                        SubjectId = subjects[1].Id
+                    },
+                    new StudentSubject
+                    {
+                        StudentId = students[2].Id,
+                        SubjectId = subjects[0].Id
+                    },
+                    new StudentSubject
+                    {
+                        StudentId = students[2].Id,
+                        SubjectId = subjects[2].Id
+                    }
+                };
+
                 await context.StudentSubjects.AddRangeAsync(studentSubjects);
                 await context.SaveChangesAsync();
             }
@@ -97,9 +96,8 @@ namespace GugaMatchavariani_EF
             {
                 Console.WriteLine(ex);
             }
-
-
         }
+
 
         private static void DatabaseCreateLog(bool dbCreated)
         {
